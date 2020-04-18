@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var animation = $Anim
 onready var body = $Sprite
-const WALK_SPEED = 5;
+const WALK_SPEED = 250;
 var faceing : int = 0;
 
 # Called when the node enters the scene tree for the first time.
@@ -35,4 +35,4 @@ func _process(_delta):
 		animation.walk(0)
 	
 # warning-ignore:return_value_discarded
-	move_and_collide(Vector2(WALK_SPEED * xa, WALK_SPEED * ya));
+	move_and_slide(Vector2(WALK_SPEED * xa, WALK_SPEED * ya));
