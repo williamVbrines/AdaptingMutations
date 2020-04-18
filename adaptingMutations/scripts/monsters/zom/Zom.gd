@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var animation = $Anim
-onready var body = $Sprite
+onready var _body = $Sprite
 const WALK_SPEED = 50;
 var faceing : int = 0;
 var following : bool = false;
@@ -10,7 +10,7 @@ var _player = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation.init(body);
+	animation.init(_body);
 
 func _process(delta):
 	
@@ -29,8 +29,8 @@ func _process(delta):
 		animation.walk(0)
 	
 
-func _go_to_target(target, delta) -> Vector2:
-	var dir : Vector2 = _player.position - position;
+func _go_to_target(target : Node2D, delta) -> Vector2:
+	var dir : Vector2 = target.position - position;
 	dir = dir.normalized()
 	position += Vector2(WALK_SPEED * delta * cos(dir.angle()), WALK_SPEED *  delta * sin(dir.angle()))
 

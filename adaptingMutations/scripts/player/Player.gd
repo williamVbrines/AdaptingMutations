@@ -4,6 +4,7 @@ onready var animation = $Anim
 onready var body = $Sprite
 const WALK_SPEED = 250;
 var faceing : int = 0;
+var center : Vector2 = Vector2(0,-22.5)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
