@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 onready var animation = $Anim
+onready var body = $Sprite
 const WALK_SPEED = 5;
 var faceing : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	animation.init(body);
 
 func _process(delta):
 	var xa = 0;

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="AdaptingMutations"
-run/main_scene="res://scripts/main/Main.tscn"
+run/main_scene="res://scripts/test/SimpleSeerver.tscn"
 config/icon="res://icon.png"
 
 [input]
