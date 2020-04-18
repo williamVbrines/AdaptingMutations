@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 22.5 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Walk_down"
 length = 0.5
 step = 0.01
@@ -129,7 +129,7 @@ hframes = 4
 frame = 5
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/Walk_down = SubResource( 4 )
+anims/Walk_down = SubResource( 2 )
 anims/Walk_up = SubResource( 3 )
 script = ExtResource( 3 )
 

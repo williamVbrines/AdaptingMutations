@@ -9,9 +9,10 @@ var faceing : int = 0;
 func _ready():
 	animation.init(body);
 
-func _process(delta):
+func _process(_delta):
 	var xa = 0;
 	var ya = 0;
+	faceing = 1;
 	
 	if(Input.is_action_pressed("ui_down")):
 		ya += 1;
@@ -33,4 +34,5 @@ func _process(delta):
 	else:
 		animation.walk(0)
 	
+# warning-ignore:return_value_discarded
 	move_and_collide(Vector2(WALK_SPEED * xa, WALK_SPEED * ya));
