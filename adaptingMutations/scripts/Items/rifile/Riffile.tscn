@@ -2,10 +2,10 @@
 
 [ext_resource path="res://scripts/Items/rifile/Riffile.gd" type="Script" id=1]
 [ext_resource path="res://textures/Items/Wepons.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Items/gun/AnimationPlayer.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Items/rifile/AnimationPlayer.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.0761, 15.588 )
+extents = Vector2( 34.4295, 10.7394 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Attack"
@@ -53,11 +53,21 @@ tracks/2/keys = {
 script = ExtResource( 1 )
 
 [node name="PickUp" type="CollisionShape2D" parent="."]
-position = Vector2( 62.8282, 2.68911 )
+position = Vector2( 62.6626, 2.63488 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 40, 14.5 )
+position = Vector2( 38.1533, 9.93305 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+offset = Vector2( 14.1893, -15.5678 )
+vframes = 4
+hframes = 4
+frame = 4
+
+[node name="Stored" type="Sprite" parent="."]
+visible = false
+position = Vector2( -18.4755, 7.99301 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 14.1893, -15.5678 )

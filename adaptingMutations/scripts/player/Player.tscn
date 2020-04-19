@@ -1,9 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://textures/Player/Player.png" type="Texture" id=2]
 [ext_resource path="res://scripts/player/Anim.gd" type="Script" id=3]
 [ext_resource path="res://scripts/monsters/BloodHit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/sceneChanger/SceneChanger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://textures/UI/h_bar.png" type="Texture" id=6]
+[ext_resource path="res://scripts/player/Health.gd" type="Script" id=7]
+[ext_resource path="res://textures/TileSet/TileSet.png" type="Texture" id=8]
+[ext_resource path="res://textures/UI/x_hover.png" type="Texture" id=9]
+[ext_resource path="res://textures/UI/x_press.png" type="Texture" id=10]
+[ext_resource path="res://textures/UI/x.png" type="Texture" id=11]
+[ext_resource path="res://textures/UI/box_hover.png" type="Texture" id=12]
+[ext_resource path="res://scripts/player/Hole.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 22.5 )
@@ -163,26 +172,11 @@ script = ExtResource( 1 )
 position = Vector2( 0, -22.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
-offset = Vector2( 10, -16 )
-vframes = 4
-hframes = 4
-frame = 4
-
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/Hit = SubResource( 2 )
 anims/Walk_down = SubResource( 3 )
 anims/Walk_up = SubResource( 4 )
 script = ExtResource( 3 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-limit_left = -1000
-limit_top = -1000
-limit_right = 2000
-limit_bottom = 2000
 
 [node name="HitBox" type="Area2D" parent="."]
 
@@ -192,5 +186,67 @@ shape = SubResource( 5 )
 
 [node name="Blood_Hit" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, -20.4879 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 1.52588e-05 )
+scale = Vector2( 3, 3 )
+z_index = 1
+texture = ExtResource( 2 )
+offset = Vector2( 10, -16 )
+vframes = 4
+hframes = 4
+frame = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = -1000
+limit_top = -1000
+limit_right = 2000
+limit_bottom = 2000
+
+[node name="Health" type="Sprite" parent="Camera2D"]
+position = Vector2( -98.5406, 247.867 )
+scale = Vector2( 3, 3 )
+z_index = 1
+texture = ExtResource( 6 )
+script = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="Camera2D/Health"]
+position = Vector2( 64, -0.027 )
+z_index = 1
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="HealthBar" type="Sprite" parent="Camera2D/Health/Sprite3"]
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -32, 12 )
+scale = Vector2( 3.5, 0.2 )
+z_as_relative = false
+texture = ExtResource( 8 )
+vframes = 4
+hframes = 4
+frame = 15
+
+[node name="Exit" type="TextureButton" parent="Camera2D"]
+margin_left = -512.376
+margin_top = -297.929
+margin_right = -480.376
+margin_bottom = -265.929
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneChanger" parent="Camera2D" instance=ExtResource( 5 )]
+
+[node name="Hole" type="Sprite" parent="Camera2D"]
+position = Vector2( -463.075, 250.013 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 12 )
+script = ExtResource( 13 )
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="pressed" from="Camera2D/Exit" to="." method="goto_main"]

@@ -65,6 +65,16 @@ offset = Vector2( 14.1893, -15.5678 )
 vframes = 4
 hframes = 4
 
+[node name="Stored" type="Sprite" parent="."]
+visible = false
+position = Vector2( -4.73544, 12.2406 )
+scale = Vector2( 3, 3 )
+z_index = 99
+texture = ExtResource( 2 )
+offset = Vector2( 14.1893, -15.5678 )
+vframes = 4
+hframes = 4
+
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 2 )
 script = ExtResource( 3 )

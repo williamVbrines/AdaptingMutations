@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://textures/TileSet/TileSet.png" type="Texture" id=1]
+[ext_resource path="res://textures/UI/Text.png" type="Texture" id=2]
+
+[node name="GameOver" type="Node2D"]
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 518.081, 310.053 )
+scale = Vector2( 33.3801, 20.3783 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 15
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 792.359, 323.304 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+vframes = 2
+frame = 1

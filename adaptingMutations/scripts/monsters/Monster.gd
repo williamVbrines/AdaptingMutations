@@ -4,6 +4,7 @@ class_name Monster
 
 export var health : int = 1;
 export var damage : int = 1;
+export var attack_damage : float = 1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,5 +15,6 @@ func _take_damage(value : int):
 	if(health < 0):
 		queue_free();
 		
-func get_damage():
-	return damage;
+func get_damage() -> float:
+	return attack_damage;
+
