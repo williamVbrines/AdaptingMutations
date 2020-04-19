@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://textures/Zombies/Zombie.png" type="Texture" id=1]
-[ext_resource path="res://scripts/monsters/zom/Zom.gd" type="Script" id=2]
-[ext_resource path="res://scripts/monsters/zom/Anim.gd" type="Script" id=3]
+[ext_resource path="res://textures/Zombies/IceCream.png" type="Texture" id=1]
+[ext_resource path="res://scripts/monsters/iceScream/Anim.gd" type="Script" id=2]
+[ext_resource path="res://scripts/monsters/iceScream/iceScream.gd" type="Script" id=3]
 [ext_resource path="res://scripts/monsters/BloodHit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/monsters/BloodDrip.tscn" type="PackedScene" id=5]
 
@@ -11,7 +11,7 @@ extents = Vector2( 15, 22.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Attack"
-length = 0.55
+length = 2.0
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Attack:monitorable")
@@ -32,7 +32,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.28, 0.34, 0.4 ),
+"times": PoolRealArray( 0, 0.22, 0.29, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
@@ -48,6 +48,138 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, -5.0, 5.0, 0.0, -5.0, 5.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attack/Area2D:shape:radius")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59, 0.81 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 19.7047, 19.7047, 126.256, 19.7047 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.17, 0.32, 0.47, 0.73, 0.91, 1.09, 1.27 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 6, 10, 6, 2, 6, 2, 6 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("spikes/spike2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( 74.6126, -94.7956 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("spikes/spike3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( 116.193, -2.9073 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("spikes/spike4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( 90.0129, 69.474 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("spikes/spike5:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( -2.38872, 114.135 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("spikes/spike7:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( -0.335331, -121.489 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("spikes/spike8:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( -77.8501, -90.6888 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("spikes/spike9:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( -116.351, 0.686097 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("spikes/spike10:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.33, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.178005, -1.36727 ), Vector2( 0.178005, -1.36727 ), Vector2( -72.2033, 87.441 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("spikes:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.35, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -150,7 +282,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 11, -16 ), Vector2( 11, -16 ) ]
+"values": [ Vector2( 10, -16 ), Vector2( 10, -16 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:rotation_degrees")
@@ -201,7 +333,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 11, -16 ), Vector2( 11, -16 ) ]
+"values": [ Vector2( 7, -16 ), Vector2( 7, -16 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:rotation_degrees")
@@ -220,22 +352,23 @@ tracks/3/keys = {
 radius = 304.524
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 29.8075
+radius = 84.231
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 42.8576
+radius = 19.7047
 
-[node name="Zom" type="KinematicBody2D"]
-script = ExtResource( 2 )
-health = 2
+[node name="iceScream" type="KinematicBody2D"]
+script = ExtResource( 3 )
 
 [node name="Blood_Drip" parent="." instance=ExtResource( 5 )]
-position = Vector2( -0.568817, -19.908 )
+self_modulate = Color( 0.027451, 0.584314, 0.0352941, 1 )
+position = Vector2( 0.129501, -7.33792 )
 amount = 3
 lifetime = 2.0
 
 [node name="Blood_Hit" parent="." instance=ExtResource( 4 )]
-position = Vector2( -0.568817, -30.7152 )
+self_modulate = Color( 0.027451, 0.584314, 0.0352941, 1 )
+position = Vector2( 0.129517, -13.9551 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -245,10 +378,10 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
-offset = Vector2( 11, -16 )
+offset = Vector2( 10, -16 )
 vframes = 4
 hframes = 4
-frame = 9
+frame = 2
 __meta__ = {
 "_edit_lock_": true
 }
@@ -258,10 +391,9 @@ anims/Attack = SubResource( 2 )
 anims/Hit = SubResource( 3 )
 anims/Walk_down = SubResource( 4 )
 anims/Walk_up = SubResource( 5 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="FollowArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
 position = Vector2( 0, -22.5 )
@@ -270,16 +402,100 @@ shape = SubResource( 6 )
 [node name="AtackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtackArea"]
-position = Vector2( 0, -22.5 )
+position = Vector2( 0.698334, -10.6283 )
 shape = SubResource( 7 )
 
 [node name="Attack" type="Area2D" parent="."]
+position = Vector2( 0, 9.77673 )
 monitoring = false
 monitorable = false
 
 [node name="Area2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 0.568787, -20.4768 )
+position = Vector2( -0.129547, -19.7785 )
 shape = SubResource( 8 )
+
+[node name="spikes" type="VisibilityEnabler2D" parent="."]
+visible = false
+position = Vector2( 0, -6.13177 )
+
+[node name="spike2" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = 0.617284
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike3" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = 1.5651
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike4" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = 2.31811
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike5" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = 3.11587
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike7" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike8" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = -0.739026
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike9" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = -1.52805
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="spike10" type="Sprite" parent="spikes"]
+position = Vector2( 0.178005, -1.36727 )
+rotation = -2.47435
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 15.4161, -15.8956 )
+vframes = 4
+hframes = 4
+frame = 3
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_FollowArea_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_FollowArea_body_exited"]
