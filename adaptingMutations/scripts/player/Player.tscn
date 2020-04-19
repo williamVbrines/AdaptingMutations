@@ -126,7 +126,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 10, -16 )
 vframes = 4
 hframes = 4
-frame = 5
+frame = 4
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/Walk_down = SubResource( 2 )

@@ -19,13 +19,23 @@ func _process(_delta):
 
 func _input(event):
 	if(event.is_action_pressed("ui_select")):
-		if(_able_to_pick_up == true):
-			_using = true;
-			_able_to_pick_up = false;
-		elif(_using):
-			position = _player.position;
-			_able_to_pick_up = true;
-			_using = false;
+		if(_player != null):
+			if(_able_to_pick_up == true):
+				if(!_player.using_wepon):
+					_using = true;
+					_able_to_pick_up = false;
+					_player.using_wepon = true;
+			elif(_using):
+				position = _player.position;
+				_able_to_pick_up = true;
+				_using = false;
+				_player.using_wepon = false;
+		
+func _attack(_value):
+	pass
+	
+func _get_damage() -> int:
+	return 0;
 
 func _pick_up_area_exited(body):
 	if(!_using):
@@ -36,9 +46,8 @@ func _pick_up_area_exited(body):
 
 func _pick_up_area_entered(body):
 	if(!_using):
-		print("HI")
 		if(body is Node2D):
 			if(body.name == "Player"):
-				
 				_player = body;
 				_able_to_pick_up = true;
+	

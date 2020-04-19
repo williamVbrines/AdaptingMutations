@@ -2,6 +2,7 @@ extends AnimationPlayer
 
 var walking : int = 0;
 var _body : Sprite;
+var _hit : bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,6 @@ func walk(dir : int = 0):
 			play("Walk_down",-1,2);
 		if(dir == -1):
 			play("Walk_up",-1,2);
-			
 	
 	if(walking == 0):
 		if(dir == 1):
@@ -25,7 +25,12 @@ func walk(dir : int = 0):
 		if(dir == -1):
 			play("Walk_up",-1,2);
 	walking = dir;
-
+	
+func hit():
+	if(!_hit):
+		_hit = true;
+		play("Hit");
+		walking = false;
 
 func _on_Anim_animation_finished(anim_name):
 	match (anim_name):
@@ -48,3 +53,5 @@ func _on_Anim_animation_finished(anim_name):
 				_body.flip_h = false;
 				_body.frame = 1;
 				_body.rotation = 0.0;
+		"Hit":
+			_hit = false;
