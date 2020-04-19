@@ -1,6 +1,7 @@
 extends AnimationPlayer
 
 var walking : int = 0;
+var attacking : bool = false;
 var _body : Sprite;
 var _hit : bool = false;
 
@@ -31,7 +32,14 @@ func hit():
 		_hit = true;
 		play("Hit");
 		walking = false;
+		attacking = false;
 
+func attack():
+	if(attacking == false && _hit == false):
+		play("Attack");
+		attacking = true;
+		walking = false;
+		
 func _on_Anim_animation_finished(anim_name):
 	match (anim_name):
 		"Walk_down": 
@@ -55,3 +63,5 @@ func _on_Anim_animation_finished(anim_name):
 				_body.rotation = 0.0;
 		"Hit":
 			_hit = false;
+		"Attack":
+			attacking = false;

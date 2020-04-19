@@ -30,6 +30,14 @@ config/name="AdaptingMutations"
 run/main_scene="res://scripts/main/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Cursor="*res://scripts/Cursor.tscn"
+
+[display]
+
+mouse_cursor/custom_image="res://textures/Blank.png"
+
 [input]
 
 ui_accept={

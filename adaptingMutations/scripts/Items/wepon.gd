@@ -15,8 +15,10 @@ func _ready():
 func _process(_delta):
 	if(_using && _player != null):
 		position = _player.position + _player.center;
-		rotation = (_player.position.angle_to_point(get_global_mouse_position())) - PI;
-
+		var angle = _player.position + _player.center;
+		angle = (angle.angle_to_point(get_global_mouse_position())) - PI;
+		
+		rotation = angle
 func _input(event):
 	if(event.is_action_pressed("ui_select")):
 		if(_player != null):

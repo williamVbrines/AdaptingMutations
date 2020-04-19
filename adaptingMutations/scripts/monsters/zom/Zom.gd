@@ -5,6 +5,7 @@ onready var _body = $Sprite
 const WALK_SPEED = 50;
 var faceing : int = 0;
 var following : bool = false;
+var attacking : bool = false;
 
 var _player = null;
 
@@ -15,6 +16,10 @@ func _ready():
 func _process(delta):
 	
 	var dir = Vector2(0,0);
+	
+	if(attacking):
+		attack();
+	
 	if(animation._hit == false):
 		if(_player != null && following == true):
 			dir = _go_to_target(_player, delta);
@@ -27,7 +32,6 @@ func _process(delta):
 				animation.walk(faceing)
 		else:
 			animation.walk(0)
-	
 
 func _go_to_target(target : Node2D, delta) -> Vector2:
 	var dir : Vector2 = target.position - position;
@@ -35,6 +39,9 @@ func _go_to_target(target : Node2D, delta) -> Vector2:
 	move_and_slide(Vector2(WALK_SPEED * cos(dir.angle()), WALK_SPEED  * sin(dir.angle())));
 
 	return dir;
+
+func attack():
+	animation.attack();
 
 func _on_FollowArea_body_entered(body):
 	if(body is Node2D):
@@ -53,12 +60,14 @@ func _on_AtackArea_body_entered(body):
 	if(body is Node2D):
 		if(body.name == "Player"):
 			following = false;
+			attacking = true;
 
 
 func _on_AtackArea_body_exited(body):
 	if(body is Node2D):
 		if(body.name == "Player"):
 			following = true;
+			attacking = false;
 	
 func _take_damage(value : int):
 	animation.hit();

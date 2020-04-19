@@ -1,11 +1,16 @@
 extends Wepon
 var damage : int = 1;
 var velocity : Vector2 = Vector2(0,0);
+export var max_distance : float = 50;
+var orgin : Vector2 = Vector2(0,0);
 
 func _process(delta):
+	if(position.distance_to(orgin) > max_distance):
+		queue_free();
 	position += velocity * delta;
 	
-func set_velocity(vel : Vector2):
+func set_velocity(vel : Vector2, org : Vector2):
+	orgin = org;
 	velocity = vel;
 	
 func set_damage(dam : int):

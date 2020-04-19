@@ -1,13 +1,56 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://textures/Zombies/Zombie.png" type="Texture" id=1]
 [ext_resource path="res://scripts/monsters/zom/Zom.gd" type="Script" id=2]
 [ext_resource path="res://scripts/monsters/zom/Anim.gd" type="Script" id=3]
+[ext_resource path="res://scripts/monsters/BloodHit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/monsters/BloodDrip.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 22.5 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
+resource_name = "Attack"
+length = 0.55
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.28, 0.34, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.16, 0.2, 0.24, 0.28 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 5.0, 0.0, -5.0, 5.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
 resource_name = "Hit"
 length = 0.2
 step = 0.01
@@ -47,9 +90,32 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Blood_Hit:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Attack:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "Walk_down"
+[sub_resource type="Animation" id=3]
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -100,8 +166,7 @@ tracks/3/keys = {
 "values": [ 0.0, 5.0, -5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walk_up"
+[sub_resource type="Animation" id=4]
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -152,14 +217,26 @@ tracks/3/keys = {
 "values": [ 0.0, 5.0, -5.0, 0.0 ]
 }
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 304.524
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 radius = 29.8075
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 42.8576
 
 [node name="Zom" type="KinematicBody2D"]
 script = ExtResource( 2 )
+health = 2
+
+[node name="Blood_Hit2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -0.568817, -19.908 )
+amount = 3
+lifetime = 2.0
+
+[node name="Blood_Hit" parent="." instance=ExtResource( 4 )]
+position = Vector2( -0.568817, -30.7152 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -178,9 +255,10 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 6 )
-anims/Walk_down = SubResource( 2 )
-anims/Walk_up = SubResource( 3 )
+anims/Attack = SubResource( 7 )
+anims/Hit = SubResource( 2 )
+anims/Walk_down = SubResource( 3 )
+anims/Walk_up = SubResource( 4 )
 script = ExtResource( 3 )
 
 [node name="FollowArea" type="Area2D" parent="."]
@@ -188,14 +266,21 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
 position = Vector2( 0, -22.5 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="AtackArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtackArea"]
 position = Vector2( 0, -22.5 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
+
+[node name="Attack" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="Area2D" type="CollisionShape2D" parent="Attack"]
+position = Vector2( 0.568787, -20.4768 )
+shape = SubResource( 8 )
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_FollowArea_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_FollowArea_body_exited"]

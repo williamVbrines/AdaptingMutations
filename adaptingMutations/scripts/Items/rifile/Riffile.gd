@@ -22,12 +22,12 @@ func shoot():
 	var new_bullet = _bullet_scene.instance();
 	var angle = (_player.position + _player.center);
 	angle = angle.angle_to_point(get_global_mouse_position()) - PI;
-	var speed = 300;
+	var speed = 1000;
 	new_bullet.position = _player.position + _player.center + Vector2(40 * cos(angle),  40* sin(angle));
 	
-	new_bullet.max_distance = 200;
+	new_bullet.max_distance = 500;
 	new_bullet.set_velocity(Vector2(speed * cos(angle),speed * sin(angle)), new_bullet.position);
-	new_bullet.set_damage(1);
+	new_bullet.set_damage(3);
 	
 	get_parent().add_child(new_bullet);
 

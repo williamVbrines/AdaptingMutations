@@ -38,3 +38,9 @@ func _process(_delta):
 	
 # warning-ignore:return_value_discarded
 	move_and_slide(Vector2(WALK_SPEED * xa, WALK_SPEED * ya));
+
+
+func _on_HitBox_area_entered(area):
+	if(area is Node):
+		if(area.name == "Attack"):
+			animation.hit();
