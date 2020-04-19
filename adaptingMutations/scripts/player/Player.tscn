@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 22.5 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Hit"
 length = 0.2
 step = 0.01
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -172,8 +172,8 @@ hframes = 4
 frame = 4
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 6 )
-anims/Walk_down = SubResource( 7 )
+anims/Hit = SubResource( 2 )
+anims/Walk_down = SubResource( 3 )
 anims/Walk_up = SubResource( 4 )
 script = ExtResource( 3 )
 

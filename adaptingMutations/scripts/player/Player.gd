@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 onready var animation = $Anim
 onready var body = $Sprite
-const WALK_SPEED = 250;
+const Normal_WALK_SPEED = 250;
+var WALK_SPEED = 250;
 var faceing : int = 0;
 var center : Vector2 = Vector2(0,-22.5);
 var using_wepon = false;
