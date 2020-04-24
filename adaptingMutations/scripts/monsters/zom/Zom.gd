@@ -5,7 +5,6 @@ onready var _body = $Sprite
 var faceing : int = 0;
 var following : bool = false;
 var attacking : bool = false;
-var nav = null;
 var slide = Vector2(0,0)
 var acseeeration = 20;
 var drift = Vector2(0,0);

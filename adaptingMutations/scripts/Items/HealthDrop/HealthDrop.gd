@@ -25,10 +25,8 @@ func shoot():
 		if(_player.health + health_res <= _player.max_health):
 			_player.health += health_res;
 			_player.health_bar.set_health(_player.health/_player.max_health);
-			_player.using_wepon = false
 			queue_free();
 		elif(_player.health != _player.max_health):
 			_player.health = _player.max_health
 			_player.health_bar.set_health(_player.health/_player.max_health);
-			_player.using_wepon = false
 			queue_free();
