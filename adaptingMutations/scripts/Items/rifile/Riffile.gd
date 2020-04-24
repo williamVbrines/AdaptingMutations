@@ -11,11 +11,9 @@ func _ready():
 
 func _process(_delta):
 	if(_using):
-		if(Input.is_action_just_pressed("ui_accept")):
-			_attack(true);
-			
-		elif(Input.is_action_just_released("ui_accept")):
-			_attack(false);
+		_attack(true);
+	else:
+		_attack(false);
 		
 func _attack(tof : bool):
 	_anim.attack(tof);
@@ -33,13 +31,3 @@ func shoot():
 		new_bullet.set_damage(3);
 		
 		get_parent().add_child(new_bullet);
-
-func stored():
-	sprite_stored.visible = true;
-	sprite.visible = false;
-	_attack(false);
-
-	
-func un_store():
-	sprite_stored.visible = false;
-	sprite.visible = true;

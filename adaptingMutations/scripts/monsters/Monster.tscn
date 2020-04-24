@@ -3,4 +3,5 @@
 [ext_resource path="res://scripts/monsters/Monster.gd" type="Script" id=1]
 
 [node name="Monster" type="KinematicBody2D"]
+visible = false
 script = ExtResource( 1 )

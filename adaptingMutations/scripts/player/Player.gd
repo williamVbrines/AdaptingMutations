@@ -2,54 +2,51 @@ extends KinematicBody2D
 
 onready var animation = $Anim
 onready var body = $Sprite
-const Normal_WALK_SPEED = 250;
-var WALK_SPEED = 250;
-var faceing : int = 0;
-var center : Vector2 = Vector2(0,-22.5);
-var using_wepon = false;
+onready var sceenchange = $Camera2D/SceneChanger;
+
+onready var health_bar = $Camera2D/Health;
+
+const Normal_WALK_SPEED = 300
+var WALK_SPEED = 300;
+
 var health = 10;
 var max_health = 10; 
-onready var health_bar = $Camera2D/Health;
-onready var sceenchange = $Camera2D/SceneChanger;
-onready var hold = $Camera2D/Hole;
+
+var move = Vector2(0,0)
+var faceing : int = 0;
+const center : Vector2 = Vector2(0,-22.5);
+
+var _follow : bool = false;
+
+var wepon : Wepon;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_process(true);
 	animation.init(body);
 
 func _process(_delta):
-	var xa = 0;
-	var ya = 0;
+	var angle = 0;
 	faceing = 1;
 	
-	if(Input.is_action_pressed("ui_down")):
-		ya += 1;
-		faceing = 1;
+	if(_follow == true):
+		angle = position + center;
+		angle = (angle.angle_to_point(get_global_mouse_position())) - PI;
+		move = Vector2(WALK_SPEED * cos(angle), WALK_SPEED * sin(angle))
+		move = move_and_slide(move);
 		
-	if(Input.is_action_pressed("ui_left")):
-		xa -= 1;
+		if(move.y > 0):
+			faceing = 1;
+		else:
+			faceing = -1;
 		
-	if(Input.is_action_pressed("ui_right")):
-		xa += 1;
-		
-	if(Input.is_action_pressed("ui_up")):
-		ya -= 1;
-		faceing = -1;
-		
-	if(Input.is_action_pressed("ui_cancel")):
-		if(using_wepon):
-			using_wepon = false;
-		
-	if(xa != 0 || ya != 0):
 		if(faceing != 0):
 			animation.walk(faceing)
+			
 	else:
 		animation.walk(0)
 	
-# warning-ignore:return_value_discarded
-	move_and_slide(Vector2(WALK_SPEED * xa, WALK_SPEED * ya));
-
-
 func _on_HitBox_area_entered(area):
 	if(area is Node):
 		if(area.name == "Attack"):
@@ -65,6 +62,17 @@ func _on_HitBox_area_entered(area):
 func goto_main():
 	sceenchange.change_scene("res://scripts/main/Main.tscn")
 
-func store() -> Vector2:
-	return hold.position + position
+func drop_wepon(new_wepon : Wepon = null):
 	
+	if(wepon != null):
+		wepon.drop();
+		
+	if(new_wepon != null):
+		wepon = new_wepon;
+
+
+func _on_DeadZone_mouse_entered():
+	_follow = false;
+	
+func _on_DeadZone_mouse_exited():
+	_follow = true;

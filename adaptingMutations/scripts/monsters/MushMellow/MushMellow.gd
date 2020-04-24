@@ -2,7 +2,6 @@ extends Monster
 
 onready var animation = $Anim
 onready var _body = $Sprite
-const WALK_SPEED = 200;
 var faceing : int = 0;
 var following : bool = false;
 var attacking : bool = false;
@@ -15,7 +14,7 @@ func _ready():
 
 func _process(delta):
 	
-	var dir = Vector2(0,0);
+	dir = Vector2(0,0);
 	
 	if(animation._hit == false):
 		if(_player != null && following == true):

@@ -14,23 +14,23 @@ func _ready():
 
 func _process(delta):
 	
-	var dir = Vector2(0,0);
+	dir = Vector2(0,0);
+	
 	if(attacking):
 		attack();
-	if(!animation.attacking):
-		if(animation._hit == false):
-			if(_player != null && following == true):
-				dir = _go_to_target(_player, delta);
-				
-			faceing = 1;
-			if(dir.y < 0): faceing = -1;
-				
-			if(dir != Vector2(0,0)):
-				if(faceing != 0):
-					animation.walk(faceing)
-			else:
-				animation.walk(0)
-				animation.sit();
+	
+	if(animation._hit == false):
+		if(_player != null && following == true):
+			dir = _go_to_target(_player, delta);
+			
+		faceing = 1;
+		if(dir.y < 0): faceing = -1;
+			
+		if(dir != Vector2(0,0)):
+			if(faceing != 0):
+				animation.walk(faceing)
+		else:
+			animation.walk(0)
 
 func _go_to_target(target : Node2D, delta) -> Vector2:
 	var dir : Vector2 = target.position - position;
