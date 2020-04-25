@@ -288,8 +288,12 @@ script = ExtResource( 2 )
 [node name="Area2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2( 1.93104, -40.2294 )
 shape = SubResource( 8 )
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_FollowArea_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_FollowArea_body_exited"]
 [connection signal="body_entered" from="AtackArea" to="." method="_on_AtackArea_body_entered"]
 [connection signal="body_exited" from="AtackArea" to="." method="_on_AtackArea_body_exited"]
+[connection signal="timeout" from="NavTimer" to="." method="_on_NavTimer_timeout"]

@@ -5,6 +5,7 @@ onready var _body = $Sprite
 var faceing : int = 0;
 var following : bool = false;
 var attacking : bool = false;
+var move = Vector2(0,0)
 
 var _player = null;
 
@@ -32,12 +33,20 @@ func _process(delta):
 				animation.walk(0)
 				animation.sit();
 
-func _go_to_target(target : Node2D, delta) -> Vector2:
-	var dir : Vector2 = target.position - position;
-	dir = dir.normalized()
-	move_and_slide(Vector2(WALK_SPEED * cos(dir.angle()), WALK_SPEED  * sin(dir.angle())));
+# warning-ignore:unused_argument
+func _go_to_target(target : Vector2, delta) -> Vector2:
 
-	return dir;
+	var dir = position.angle_to_point(target) - PI;
+
+	move = Vector2(WALK_SPEED * cos(dir), WALK_SPEED  * sin(dir))
+
+# warning-ignore:return_value_discarded
+	move_and_slide( Vector2( 0.0, 0.0 ) )
+	move = move_and_slide(move);
+
+			
+	return Vector2(WALK_SPEED * cos(dir), WALK_SPEED  * sin(dir)).normalized();
+	
 
 func attack():
 	animation.attack();
@@ -73,3 +82,8 @@ func _take_damage(value : int):
 	health -= value;
 	if(health < 0):
 		queue_free();
+
+
+func _on_NavTimer_timeout():
+	if(_player != null && following == true):
+		update_nav(nav, _player)

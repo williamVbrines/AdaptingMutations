@@ -5,11 +5,10 @@ onready var _body = $Sprite
 var faceing : int = 0;
 var following : bool = false;
 var attacking : bool = false;
-var slide = Vector2(0,0)
 var acseeeration = 20;
 var drift = Vector2(0,0);
 var drift_max = 100;
-
+var move = Vector2(0,0)
 
 var _player = null;
 
@@ -40,13 +39,16 @@ func _physics_process(delta):
 				animation.walk(faceing)
 		else:
 			animation.walk(0)
-var move = Vector2(0,0)
+
+
+# warning-ignore:unused_argument
 func _go_to_target(target : Vector2, delta) -> Vector2:
 
 	var dir = position.angle_to_point(target) - PI;
 
 	move = Vector2(WALK_SPEED * cos(dir), WALK_SPEED  * sin(dir))
 
+# warning-ignore:return_value_discarded
 	move_and_slide( Vector2( 0.0, 0.0 ) )
 	move = move_and_slide(move);
 
@@ -88,29 +90,6 @@ func _take_damage(value : int):
 	if(health < 0):
 		queue_free();
 
-func _on_Y_C_body_entered(body):
-	if(body is Node):
-		if(body.name == "TileMap"):
-			slide.y = 1;
-
-
-func _on_Y_C_body_exited(body):
-	if(body is Node):
-		if(body.name == "TileMap"):
-			slide.y = 0;
-
-
-func _on_X_C_body_entered(body):
-	if(body is Node):
-		if(body.name == "TileMap"):
-			slide.x = 1;
-
-
-func _on_X_C_body_exited(body):
-	if(body is Node):
-		if(body.name == "TileMap"):
-			slide.x = 0;
-			
 func _on_NavTimer_timeout():	
 	if(_player != null && following == true):
 		update_nav(nav, _player)

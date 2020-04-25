@@ -498,8 +498,12 @@ offset = Vector2( 15.4161, -15.8956 )
 vframes = 4
 hframes = 4
 frame = 3
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_FollowArea_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_FollowArea_body_exited"]
 [connection signal="body_entered" from="AtackArea" to="." method="_on_AtackArea_body_entered"]
 [connection signal="body_exited" from="AtackArea" to="." method="_on_AtackArea_body_exited"]
+[connection signal="timeout" from="NavTimer" to="." method="_on_NavTimer_timeout"]

@@ -235,7 +235,6 @@ anims/Walk_up = SubResource( 5 )
 script = ExtResource( 3 )
 
 [node name="FollowArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
 position = Vector2( 0, -22.5 )
@@ -247,8 +246,12 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtackArea"]
 position = Vector2( 0.340561, -19.7755 )
 shape = SubResource( 7 )
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_FollowArea_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_FollowArea_body_exited"]
 [connection signal="body_entered" from="AtackArea" to="." method="_on_AtackArea_body_entered"]
 [connection signal="body_exited" from="AtackArea" to="." method="_on_AtackArea_body_exited"]
+[connection signal="timeout" from="NavTimer" to="." method="_on_NavTimer_timeout"]

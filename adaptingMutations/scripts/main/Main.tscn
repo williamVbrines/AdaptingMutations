@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/main/Main.gd" type="Script" id=1]
 [ext_resource path="res://textures/UI/play_press.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scripts/main/Play.gd" type="Script" id=6]
 [ext_resource path="res://scripts/sceneChanger/SceneChanger.tscn" type="PackedScene" id=7]
 [ext_resource path="res://textures/TileSet/TileSet.png" type="Texture" id=8]
-[ext_resource path="res://textures/UI/UI.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "jgel"
@@ -39,16 +38,16 @@ hframes = 4
 frame = 15
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 786.855, 133.933 )
-scale = Vector2( 3, 3 )
+position = Vector2( 882.521, 279.824 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 5 )
 vframes = 2
 
 [node name="Play" type="TextureButton" parent="."]
-margin_left = 482.898
-margin_top = 356.357
-margin_right = 514.898
-margin_bottom = 388.357
+margin_left = 502.031
+margin_top = 437.673
+margin_right = 534.031
+margin_bottom = 469.673
 rect_scale = Vector2( 3, 3 )
 rect_pivot_offset = Vector2( 15.8409, 16.7497 )
 texture_normal = ExtResource( 3 )
@@ -63,13 +62,5 @@ __meta__ = {
 anims/jgel = SubResource( 1 )
 
 [node name="SceneChanger" parent="." instance=ExtResource( 7 )]
-
-[node name="Sprite4" type="Sprite" parent="."]
-position = Vector2( 813.164, 375.49 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 9 )
-vframes = 3
-hframes = 3
-frame = 8
 [connection signal="pressed" from="Play" to="Play" method="_on_Play_pressed"]
 [connection signal="animation_finished" from="Play/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

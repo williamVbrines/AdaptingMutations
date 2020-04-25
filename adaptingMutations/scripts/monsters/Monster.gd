@@ -2,8 +2,6 @@ extends KinematicBody2D;
 
 class_name Monster
 
-onready var timer = $NavTimer
-
 export var health : int = 1;
 export var damage : int = 1;
 export var attack_damage : float = 1;

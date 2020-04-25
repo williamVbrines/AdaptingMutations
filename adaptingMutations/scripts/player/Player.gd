@@ -8,6 +8,7 @@ onready var health_bar = $Camera2D/Health;
 
 const Normal_WALK_SPEED = 300
 var WALK_SPEED = 300;
+const WALK_DISTANCE = 300;
 
 var health = 10;
 var max_health = 10; 
@@ -28,12 +29,14 @@ func _ready():
 
 func _process(_delta):
 	var angle = 0;
+	var distance = 0;
 	faceing = 1;
 	
 	if(_follow == true):
 		angle = position + center;
+		distance = position + center - get_global_mouse_position();
 		angle = (angle.angle_to_point(get_global_mouse_position())) - PI;
-		move = Vector2(WALK_SPEED * cos(angle), WALK_SPEED * sin(angle))
+		move = Vector2(WALK_SPEED * min(distance.length() / WALK_DISTANCE, 1 ) * cos(angle), WALK_SPEED * min(distance.length() / WALK_DISTANCE, 1 ) * sin(angle))
 		move = move_and_slide(move);
 		
 		if(move.y > 0):

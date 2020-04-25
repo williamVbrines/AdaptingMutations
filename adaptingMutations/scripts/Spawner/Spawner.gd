@@ -28,10 +28,10 @@ func _on_Timer_timeout():
 
 func _spawn_monster():
 	if(spawn_area.get_overlapping_bodies().size() <= 1):
-		var ran = randi();
+		var ran = 3
 		var new_mon = zom.instance();
 		
-		match(ran%4):
+		match(ran):
 			0:
 				new_mon = zom.instance();
 			1:

@@ -6,6 +6,9 @@ var faceing : int = 0;
 var following : bool = false;
 var attacking : bool = false;
 
+var move = Vector2(0,0)
+
+
 var _player = null;
 
 # Called when the node enters the scene tree for the first time.
@@ -13,12 +16,19 @@ func _ready():
 	animation.init(_body);
 
 func _process(delta):
-	
+
 	dir = Vector2(0,0);
 	
+	if(attacking):
+		attack();
+	
 	if(animation._hit == false):
-		if(_player != null && following == true):
-			dir = _go_to_target(_player, delta);
+		if(_player != null && following == true && nav != null && nav_map != null):
+				if(nav_map.size() > 0):
+					dir = _go_to_target(nav_map[0], delta);
+					
+					if(Vector2(nav_map[0] - position).length() < 2):
+						nav_map.remove(0);
 			
 		faceing = 1;
 		if(dir.y < 0): faceing = -1;
@@ -29,12 +39,17 @@ func _process(delta):
 		else:
 			animation.walk(0)
 
-func _go_to_target(target : Node2D, delta) -> Vector2:
-	var dir : Vector2 = target.position - position;
-	dir = dir.normalized()
-	move_and_slide(Vector2(WALK_SPEED * cos(dir.angle()), WALK_SPEED  * sin(dir.angle())));
+func _go_to_target(target : Vector2, delta) -> Vector2:
 
-	return dir;
+	var dir = position.angle_to_point(target) - PI;
+
+	move = Vector2(WALK_SPEED * cos(dir), WALK_SPEED  * sin(dir))
+
+	move_and_slide( Vector2( 0.0, 0.0 ) )
+	move = move_and_slide(move);
+
+			
+	return Vector2(WALK_SPEED * cos(dir), WALK_SPEED  * sin(dir)).normalized();
 
 func attack():
 	animation.attack();
@@ -50,7 +65,6 @@ func _on_FollowArea_body_exited(body):
 		if(body.name == "Player"):
 			_player = null;
 			following = false;
-
 
 func _on_AtackArea_body_entered(body):
 	if(body is Node2D):
@@ -71,3 +85,7 @@ func _take_damage(value : int):
 	health -= value;
 	if(health < 0):
 		queue_free();
+
+func _on_NavTimer_timeout():
+	if(_player != null && following == true):
+		update_nav(nav, _player)
