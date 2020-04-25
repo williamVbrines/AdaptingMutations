@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://textures/UI/x.png" type="Texture" id=1]
+[ext_resource path="res://scripts/UI/PausePopUp/PausePopUp.gd" type="Script" id=2]
+[ext_resource path="res://textures/UI/play_press.png" type="Texture" id=3]
+[ext_resource path="res://textures/UI/play.png" type="Texture" id=4]
+[ext_resource path="res://textures/UI/play_hover.png" type="Texture" id=5]
+[ext_resource path="res://textures/UI/x_press.png" type="Texture" id=6]
+[ext_resource path="res://textures/UI/x_hover.png" type="Texture" id=7]
+[ext_resource path="res://textures/UI/pause.png" type="Texture" id=8]
+[ext_resource path="res://textures/UI/pause_hover.png" type="Texture" id=9]
+[ext_resource path="res://textures/UI/pause_press.png" type="Texture" id=10]
+[ext_resource path="res://textures/UI/white_box.png" type="Texture" id=11]
+[ext_resource path="res://scripts/sceneChanger/SceneChanger.tscn" type="PackedScene" id=12]
+
+[node name="PausePopUp" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="BG" type="Sprite" parent="."]
+self_modulate = Color( 0.0392157, 0.0431373, 0.101961, 0.415686 )
+position = Vector2( 514.094, 305.246 )
+scale = Vector2( 33.6904, 19.6062 )
+texture = ExtResource( 11 )
+
+[node name="Pause" type="TextureButton" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="TextureButton" parent="."]
+margin_left = 240.58
+margin_top = 232.795
+margin_right = 272.58
+margin_bottom = 264.795
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="TextureButton" parent="."]
+margin_left = 671.774
+margin_top = 233.178
+margin_right = 703.774
+margin_bottom = 265.178
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneChanger" parent="." instance=ExtResource( 12 )]
+[connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

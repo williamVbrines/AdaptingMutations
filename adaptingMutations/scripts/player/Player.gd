@@ -65,6 +65,7 @@ func _on_HitBox_area_entered(area):
 func goto_main():
 	sceenchange.change_scene("res://scripts/main/Main.tscn")
 
+
 func drop_wepon(new_wepon : Wepon = null):
 	
 	if(wepon != null):
@@ -79,3 +80,5 @@ func _on_DeadZone_mouse_entered():
 	
 func _on_DeadZone_mouse_exited():
 	_follow = true;
+
+

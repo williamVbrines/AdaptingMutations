@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://textures/Player/Player.png" type="Texture" id=2]
@@ -8,9 +8,7 @@
 [ext_resource path="res://textures/UI/h_bar.png" type="Texture" id=6]
 [ext_resource path="res://scripts/player/Health.gd" type="Script" id=7]
 [ext_resource path="res://textures/UI/h_bar_health.png" type="Texture" id=8]
-[ext_resource path="res://textures/UI/x_hover.png" type="Texture" id=9]
-[ext_resource path="res://textures/UI/x_press.png" type="Texture" id=10]
-[ext_resource path="res://textures/UI/x.png" type="Texture" id=11]
+[ext_resource path="res://scripts/UI/PausePopUp/PausePopUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/player/Camera2D.gd" type="Script" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -210,20 +208,10 @@ vframes = 4
 hframes = 4
 frame = 15
 
-[node name="Exit" type="TextureButton" parent="Camera2D"]
-margin_left = -512.889
-margin_top = -301.009
-margin_right = -480.889
-margin_bottom = -269.009
-rect_scale = Vector2( 3, 3 )
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="SceneChanger" parent="Camera2D" instance=ExtResource( 5 )]
+
+[node name="PausePopUp" parent="Camera2D" instance=ExtResource( 9 )]
+position = Vector2( -510.104, -297.991 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -22.5 )
@@ -265,7 +253,6 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea"]
 shape = SubResource( 7 )
-[connection signal="pressed" from="Camera2D/Exit" to="." method="goto_main"]
 [connection signal="animation_finished" from="Anim" to="Anim" method="_on_Anim_animation_finished"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="mouse_entered" from="DeadZone" to="." method="_on_DeadZone_mouse_entered"]
